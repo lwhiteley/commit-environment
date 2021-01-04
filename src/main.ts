@@ -1,19 +1,23 @@
-import * as core from '@actions/core'
-import {wait} from './wait'
+import * as core from '@actions/core';
+import isEmpty from 'lodash/isEmpty';
 
-async function run(): Promise<void> {
+import { getEnvObject } from './helpers/getEnvObject';
+(async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+    const envObject = await getEnvObject();
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    if (isEmpty(envObject)) {
+      core.info('No environment tags found');
+      return undefined;
+    }
 
-    core.setOutput('time', new Date().toTimeString())
+    core.info(`environment tags found\n${JSON.stringify(envObject, null, 2)}`);
+
+    Object.entries(envObject).forEach(([key, value]) => {
+      core.exportVariable(key, value);
+      core.setOutput(key, value);
+    });
   } catch (error) {
-    core.setFailed(error.message)
+    core.setFailed(error.message);
   }
-}
-
-run()
+})();

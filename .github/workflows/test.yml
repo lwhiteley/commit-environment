@@ -20,5 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./
-        with:
-          milliseconds: 1000
+        id: ci_tags
+      # Use the output from the `add_to_q` step
+      - name: Get the output
+        run: echo "print => ${{ steps.ci_tags.outputs.CI_TAGS_TEST }}"
