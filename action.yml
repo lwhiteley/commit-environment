@@ -2,7 +2,6 @@ name: 'commit-environment'
 description: 'parse ci tags in a commit and add them as environement variables'
 author: 'Layton Whiteley'
 branding:
-  icon: 'bell'
   color: 'green'
 runs:
   using: 'node12'
