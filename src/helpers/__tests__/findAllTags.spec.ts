@@ -7,6 +7,9 @@ describe('main', () => {
     --ci-platform=test jhguihik
     --ci-platform-type
     --ci-demo-type=blocking
+    --ci-demo-type1=blocking45_754  
+    --ci-demo-type2='blocking45_754' 
+    --ci-demo-type3="blocking45_754"  
     `
 
     const result = findAllTags(testStr)
@@ -14,7 +17,10 @@ describe('main', () => {
       '--ci-skip',
       '--ci-platform=test',
       '--ci-platform-type',
-      '--ci-demo-type=blocking'
+      '--ci-demo-type=blocking',
+      '--ci-demo-type1=blocking45_754',
+      '--ci-demo-type2=\'blocking45_754\'',
+      '--ci-demo-type3="blocking45_754"'
     ])
   })
 })

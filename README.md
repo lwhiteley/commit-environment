@@ -21,7 +21,7 @@ To reference as an output or environment variable, please use the snakecase+uppe
 
 for eg.
 
-`--ci-skip` will be transformed into CI_SKIP
+`--ci-skip` will be transformed into `CI_SKIP`
 
 Practical example:
 
@@ -35,6 +35,7 @@ Now my commit body has some tags
 --ci-platform=test
 --ci-platform-type
 --ci-demo-type=blocking
+--ci-demo-type2=blocking
 ```
 
 Result:
@@ -44,10 +45,7 @@ Result:
   CI_SKIP: 'true',
   CI_PLATFORM: 'test',
   CI_PLATFORM_TYPE: 'true',
-  CI_DEMO_TYPE:'blocking'
+  CI_DEMO_TYPE: 'blocking'
+  CI_DEMO_TYPE_2: 'blocking'
 }
 ```
-
-TODO:
-
-- [ ] support quoted values

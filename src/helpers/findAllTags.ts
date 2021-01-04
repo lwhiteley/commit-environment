@@ -2,7 +2,7 @@ export const findAllTags = (str: string): string[] => {
   if (!str) {
     return [];
   }
-  const regex = /(--ci)(?=\S*[-])([a-zA-Z-]+)(=\w+)?/g;
+  const regex = /(--ci)(?=\S*[-])([a-zA-Z0-9-]+)(=)?((\w+)|(('|")(\w+)('|")))?/g;
 
   const result: string[] = [];
   let m;
