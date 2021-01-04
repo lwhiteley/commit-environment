@@ -1,103 +1,53 @@
-<p align="center">
-  <a href="https://github.com/actions/typescript-action/actions"><img alt="typescript-action status" src="https://github.com/actions/typescript-action/workflows/build-test/badge.svg"></a>
-</p>
+# commit-environment
 
-# Create a JavaScript Action using TypeScript
+Github action to parse ci tags from commit messages. This is a generic tag parser to fit into any workflow that may want to take an action only for a specific commit.
 
-Use this template to bootstrap the creation of a TypeScript action.:rocket:
+**Possible use case:** Enable demo mode for a specific commit and block build as this must not get into master branch
 
-This template includes compilation support, tests, a validation workflow, publishing, and versioning guidance.  
+### tag patterns
 
-If you are new, there's also a simpler introduction.  See the [Hello World JavaScript Action](https://github.com/actions/hello-world-javascript-action)
-
-## Create an action from this template
-
-Click the `Use this Template` and provide the new repo details for your action
-
-## Code in Main
-
-Install the dependencies  
-```bash
-$ npm install
+```
+--ci-skip
+--ci-platform=test
+--ci-platform-type
+--ci-demo-type=blocking
 ```
 
-Build the typescript and package it for distribution
-```bash
-$ npm run build && npm run package
+Tags can have an optional value `<tag>=some_value`
+
+Tags will be exported as step outputs and also as environment variables.
+
+To reference as an output or environment variable, please use the snakecase+uppercased version of the tag
+
+for eg.
+
+`--ci-skip` will be transformed into CI_SKIP
+
+Practical example:
+
+```
+// commit messages
+This is my sample commit subject
+
+Now my commit body has some tags
+
+--ci-skip
+--ci-platform=test
+--ci-platform-type
+--ci-demo-type=blocking
 ```
 
-Run the tests :heavy_check_mark:  
-```bash
-$ npm test
+Result:
 
- PASS  ./index.test.js
-  ✓ throws invalid number (3ms)
-  ✓ wait 500 ms (504ms)
-  ✓ test runs (95ms)
-
-...
-```
-
-## Change action.yml
-
-The action.yml contains defines the inputs and output for your action.
-
-Update the action.yml with your name, description, inputs and outputs for your action.
-
-See the [documentation](https://help.github.com/en/articles/metadata-syntax-for-github-actions)
-
-## Change the Code
-
-Most toolkit and CI/CD operations involve async operations so the action is run in an async function.
-
-```javascript
-import * as core from '@actions/core';
-...
-
-async function run() {
-  try { 
-      ...
-  } 
-  catch (error) {
-    core.setFailed(error.message);
-  }
+```js
+{
+  CI_SKIP: 'true',
+  CI_PLATFORM: 'test',
+  CI_PLATFORM_TYPE: 'true',
+  CI_DEMO_TYPE:'blocking'
 }
-
-run()
 ```
 
-See the [toolkit documentation](https://github.com/actions/toolkit/blob/master/README.md#packages) for the various packages.
+TODO:
 
-## Publish to a distribution branch
-
-Actions are run from GitHub repos so we will checkin the packed dist folder. 
-
-Then run [ncc](https://github.com/zeit/ncc) and push the results:
-```bash
-$ npm run package
-$ git add dist
-$ git commit -a -m "prod dependencies"
-$ git push origin releases/v1
-```
-
-Note: We recommend using the `--license` option for ncc, which will create a license file for all of the production node modules used in your project.
-
-Your action is now published! :rocket: 
-
-See the [versioning documentation](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
-
-## Validate
-
-You can now validate the action by referencing `./` in a workflow in your repo (see [test.yml](.github/workflows/test.yml))
-
-```yaml
-uses: ./
-with:
-  milliseconds: 1000
-```
-
-See the [actions tab](https://github.com/actions/typescript-action/actions) for runs of this action! :rocket:
-
-## Usage:
-
-After testing you can [create a v1 tag](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md) to reference the stable and latest V1 action
+- [ ] support quoted values
