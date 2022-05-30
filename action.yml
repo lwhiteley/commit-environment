@@ -1,5 +1,5 @@
 name: 'commit-environment'
-description: 'parse ci tags in a commit and add them as environement variables'
+description: 'parse ci tags in a commit and add them as environment variables'
 author: 'Layton Whiteley'
 branding:
   color: 'green'
