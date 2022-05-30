@@ -2,7 +2,7 @@
   "name": "commit-environment",
   "version": "1.0.1",
   "private": true,
-  "description": "parse ci tags in a commit and add them as environement variables",
+  "description": "parse ci tags in a commit and add them as environment variables",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc -p tsconfig.prod.json",
