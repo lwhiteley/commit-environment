@@ -1,6 +1,6 @@
 {
   "name": "commit-environment",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "private": true,
   "description": "parse ci tags in a commit and add them as environment variables",
   "main": "lib/main.js",
