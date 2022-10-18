@@ -1,4 +1,4 @@
-import {findAllTags} from '../findAllTags'
+import { findAllTags } from '../find-all-tags';
 
 describe('main', () => {
   it('should find all tags and return array', () => {
@@ -10,17 +10,17 @@ describe('main', () => {
     --ci-demo-type1=blocking45_754  
     --ci-demo-type2='blocking45_754' 
     --ci-demo-type3="blocking45_754"  
-    `
+    `;
 
-    const result = findAllTags(testStr)
+    const result = findAllTags(testStr);
     expect(result).toEqual([
       '--ci-skip',
       '--ci-platform=test',
       '--ci-platform-type',
       '--ci-demo-type=blocking',
       '--ci-demo-type1=blocking45_754',
-      '--ci-demo-type2=\'blocking45_754\'',
-      '--ci-demo-type3="blocking45_754"'
-    ])
-  })
-})
+      "--ci-demo-type2='blocking45_754'",
+      '--ci-demo-type3="blocking45_754"',
+    ]);
+  });
+});

@@ -11,6 +11,7 @@
       "eslint-comments/no-use": "off",
       "import/no-namespace": "off",
       "no-unused-vars": "off",
+      "i18n-text/no-en": "off",
       "@typescript-eslint/no-unused-vars": "error",
       "@typescript-eslint/explicit-member-accessibility": ["error", {"accessibility": "no-public"}],
       "@typescript-eslint/no-require-imports": "error",
@@ -55,7 +56,8 @@
       {
         "files": ["**/__tests__/**"],
         "rules":{
-          "no-console": 0
+          "no-console": 0,
+          "filenames/match-regex":0
         }
       }
     ]

@@ -1,8 +1,8 @@
 import fs from 'fs';
 import { readCommit } from 'isomorphic-git';
 
-import { findAllTags } from './findAllTags';
-import { tagsToObject } from './tagsToObject';
+import { findAllTags } from './find-all-tags';
+import { tagsToObject } from './tags-to-object';
 
 const { GITHUB_SHA, GITHUB_WORKSPACE } = process.env;
 

@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import isEmpty from 'lodash/isEmpty';
 
-import { getEnvObject } from './helpers/getEnvObject';
+import { getEnvObject } from './helpers/get-env-object';
 (async function run(): Promise<void> {
   try {
     const envObject = await getEnvObject();
@@ -13,11 +13,12 @@ import { getEnvObject } from './helpers/getEnvObject';
 
     core.info(`environment tags found\n${JSON.stringify(envObject, null, 2)}`);
 
-    Object.entries(envObject).forEach(([key, value]) => {
+    for (const entry of Object.entries(envObject)) {
+      const [key, value] = entry;
       core.exportVariable(key, value);
       core.setOutput(key, value);
-    });
+    }
   } catch (error) {
-    core.setFailed(error.message);
+    core.setFailed((error as Error).message);
   }
 })();
