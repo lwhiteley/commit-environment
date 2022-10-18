@@ -7,7 +7,7 @@ import { getEnvObject } from './helpers/get-env-object';
     const envObject = await getEnvObject();
 
     if (isEmpty(envObject)) {
-      core.info('No environment tags found.');
+      core.info('No environment tags found');
       return undefined;
     }
 

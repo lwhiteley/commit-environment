@@ -149,7 +149,7 @@ const get_env_object_1 = __nccwpck_require__(8516);
         try {
             const envObject = yield (0, get_env_object_1.getEnvObject)();
             if ((0, isEmpty_1.default)(envObject)) {
-                core.info('No environment tags found.');
+                core.info('No environment tags found');
                 return undefined;
             }
             core.info(`environment tags found\n${JSON.stringify(envObject, null, 2)}`);
